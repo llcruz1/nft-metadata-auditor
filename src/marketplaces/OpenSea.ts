@@ -1,14 +1,16 @@
-import { IHttpServices } from "../models/HttpServices/IHttpServices";
+import { IHttpServiceWrapper } from "../models/HttpServices/IHttpServiceWrapper";
 import { IMarketplace } from "../models/Marketplace/IMarketplace";
 import { NftMetadataContract } from "../models/Nft/NftMetadataContract";
+import { OpenSeaMetadataResponse } from "../models/OpenSea/OpenSeaMetadataResponse";
 
-type OpenSeaNftPathname = `asset/ethereum/${string}/${string}}`
+type OpenSeaNftPathname = `asset/ethereum/${string}/${string}}`;
 
 export class OpenSea implements IMarketplace {
-  httpServices: IHttpServices;
+  private readonly httpServiceWrapper: IHttpServiceWrapper;
+  private nftMetadata!: NftMetadataContract;
 
-  constructor(httpServices: IHttpServices) {
-    this.httpServices = httpServices;
+  constructor(httpServices: IHttpServiceWrapper) {
+    this.httpServiceWrapper = httpServices;
   }
 
   async getMetadata(nftUrl: URL): Promise<NftMetadataContract | undefined> {
@@ -18,22 +20,25 @@ export class OpenSea implements IMarketplace {
       const contractAddress = routeParams[3];
       const tokenId = routeParams[4];
 
-      const response = await this.httpServices.openSeaService.getNftMetadata(
-        contractAddress,
-        tokenId
-      );
+      const response: OpenSeaMetadataResponse =
+        await this.httpServiceWrapper.openSeaService.getNftMetadata(
+          contractAddress,
+          tokenId
+        );
 
-      return {
+      this.nftMetadata = {
         address: response.asset_contract.address,
         tokenId: response.token_id,
-        imageUrl: response.image_url,
+        imageUrl: response.image_original_url,
         name: response.name,
         collectionSymbol: response.asset_contract.symbol,
         description: response.description,
         createdAt: response.asset_contract.created_date,
-      } as NftMetadataContract;
+      };
+
+      return this.nftMetadata;
     } catch (error) {
-      console.log(error);
+      throw new Error("Could not communicate with OpenSea Api.");
     }
   }
 }

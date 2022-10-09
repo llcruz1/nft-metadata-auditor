@@ -1,20 +1,22 @@
 import { MarketplaceHostnameEnum } from "../enums/MarketplaceHostnameEnum";
 import { OpenSea } from "../marketplaces/OpenSea";
 import { IMarketplaceFactory } from "../models/Factory/IMarketplaceFactory";
-import { IHttpServices } from "../models/HttpServices/IHttpServices";
+import { IHttpServiceWrapper } from "../models/HttpServices/IHttpServiceWrapper";
 import { IMarketplace } from "../models/Marketplace/IMarketplace";
 
 export class MarketplaceFactory implements IMarketplaceFactory {
-  httpServices: IHttpServices;
+  private readonly httpServiceWrapper: IHttpServiceWrapper;
+  private readonly nftUrl: URL;
 
-  constructor(httpServices: IHttpServices) {
-    this.httpServices = httpServices;
+  constructor(httpServices: IHttpServiceWrapper, nftUrl: URL) {
+    this.httpServiceWrapper = httpServices;
+    this.nftUrl = nftUrl;
   }
 
-  create(nftUrl: URL): IMarketplace {
-    switch (nftUrl.hostname) {
+  create(): IMarketplace {
+    switch (this.nftUrl.hostname) {
       case MarketplaceHostnameEnum.OpenSea:
-        return new OpenSea(this.httpServices);
+        return new OpenSea(this.httpServiceWrapper);
       default:
         throw Error("Marketplace not supported");
     }

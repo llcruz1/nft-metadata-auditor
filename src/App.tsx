@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { MarketplaceFactory } from "./factory/MarketplaceFactory";
 import { NftMetadataContract } from "./models/Nft/NftMetadataContract";
-import { HttpServices } from "./services/HttpServices";
+import { HttpServiceWrapper } from "./services/HttpServiceWrapper";
 
 function App() {
   const [url, setUrl] = useState("");
@@ -10,16 +10,17 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    async function getMetadataFromNftInCurrentPage() {
+    async function getMetadataFromNftUrl() {
       try {
         if (!url) {
           return;
         }
         setIsLoading(true);
         const nftUrl = new URL(url);
-        const marketplace = new MarketplaceFactory(new HttpServices()).create(
+        const marketplace = new MarketplaceFactory(
+          new HttpServiceWrapper(),
           nftUrl
-        );
+        ).create();
         const metadata = await marketplace.getMetadata(nftUrl);
         setNftMetadata(metadata);
       } catch (error) {
@@ -29,7 +30,7 @@ function App() {
       }
     }
 
-    getMetadataFromNftInCurrentPage();
+    getMetadataFromNftUrl();
   }, [url]);
 
   return (

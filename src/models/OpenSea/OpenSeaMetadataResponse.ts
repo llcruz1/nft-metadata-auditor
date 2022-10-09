@@ -1,9 +1,11 @@
 export interface OpenSeaMetadataResponse {
-  image_url: string;
+  token_id: string;
+  image_original_url: string;
   name: string;
+  external_link: string;
+  last_sale: string;
   description: string;
   asset_contract: AssetContract;
-  token_id: string;
 }
 
 interface AssetContract {

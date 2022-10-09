@@ -1,5 +1,5 @@
 import { IOpenSeaHttpService } from "./IOpenSeaHttpService";
 
-export interface IHttpServices {
+export interface IHttpServiceWrapper {
   openSeaService: IOpenSeaHttpService;
 }
