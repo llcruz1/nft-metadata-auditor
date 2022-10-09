@@ -3,7 +3,7 @@ export interface NftMetadataContract {
   tokenId: string;
   imageUrl: string;
   name: string;
-  collectionSymbol: string;
+  collectionSymbol?: string;
   description: string;
   createdAt: string;
 }

@@ -38,7 +38,7 @@ function App() {
       <h1>NFT Metadata Auditor</h1>
 
       <p>
-        Paste an NFT page from OpenSea here. Example:
+        Paste an NFT page from OpenSea or Rarible here. Example:
         <a
           target="_blank"
           rel="noReferrer"
