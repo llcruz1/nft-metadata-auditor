@@ -1,7 +1,6 @@
-import { IOpenSeaHttpService } from "./IOpenSeaHttpService";
-import { IRaribleHttpService } from "./IRaribleHttpService";
+import { IMarketplaceHttpService } from "./IMarketplaceHttpService";
 
 export interface IHttpServiceWrapper {
-  openSeaService: IOpenSeaHttpService;
-  raribleService: IRaribleHttpService;
+  openSeaService: IMarketplaceHttpService;
+  raribleService: IMarketplaceHttpService;
 }

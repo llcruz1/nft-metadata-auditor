@@ -1,20 +1,16 @@
 import axios from "axios";
-import { IGenericHttpService } from "../models/HttpServices/IGenericHttpService";
-import { IOpenSeaHttpService } from "../models/HttpServices/IOpenSeaHttpService";
-import { OpenSeaMetadataResponse } from "../models/OpenSea/OpenSeaMetadataResponse";
+import { IMarketplaceHttpService } from "../models/HttpServices/IMarketplaceHttpService";
 
-class OpenSeaService implements IOpenSeaHttpService, IGenericHttpService {
+class OpenSeaService implements IMarketplaceHttpService {
   public readonly service = axios.create({
     baseURL: "https://api.opensea.io",
   });
 
-  public async getNftMetadata(
+  public async getNftMetadata<OpenSeaMetadataResponse>(
     contractAddress: string,
-    tokenId: string
+    tokenId: string,
   ): Promise<OpenSeaMetadataResponse> {
-    const response = await this.service.get(
-      `asset/${contractAddress}/${tokenId}`
-    );
+    const response = await this.service.get(`asset/${contractAddress}/${tokenId}`);
     return response.data;
   }
 }

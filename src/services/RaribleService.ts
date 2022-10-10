@@ -1,20 +1,16 @@
 import axios from "axios";
-import { IGenericHttpService } from "../models/HttpServices/IGenericHttpService";
-import { IRaribleHttpService } from "../models/HttpServices/IRaribleHttpService";
-import { RaribleMetadataResponse } from "../models/Rarible/RaribleMetadataResponse";
+import { IMarketplaceHttpService } from "../models/HttpServices/IMarketplaceHttpService";
 
-class RaribleService implements IRaribleHttpService, IGenericHttpService {
+class RaribleService implements IMarketplaceHttpService {
   public readonly service = axios.create({
     baseURL: "https://api.rarible.org",
   });
 
-  public async getNftMetadata(
+  public async getNftMetadata<RaribleMetadataResponse>(
     contractAddress: string,
-    tokenId: string
+    tokenId: string,
   ): Promise<RaribleMetadataResponse> {
-    const response = await this.service.get(
-      `v0.1/items/ETHEREUM:${contractAddress}:${tokenId}`
-    );
+    const response = await this.service.get(`v0.1/items/ETHEREUM:${contractAddress}:${tokenId}`);
     return response.data;
   }
 }
