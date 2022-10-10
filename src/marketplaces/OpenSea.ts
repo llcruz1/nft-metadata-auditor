@@ -7,7 +7,6 @@ type OpenSeaNftPathname = `asset/ethereum/${string}/${string}}`;
 
 export class OpenSea implements IMarketplace {
   private readonly httpServiceWrapper: IHttpServiceWrapper;
-  private nftMetadata!: NftMetadataContract;
 
   constructor(httpServices: IHttpServiceWrapper) {
     this.httpServiceWrapper = httpServices;
@@ -21,12 +20,9 @@ export class OpenSea implements IMarketplace {
       const tokenId = routeParams[4];
 
       const response: OpenSeaMetadataResponse =
-        await this.httpServiceWrapper.openSeaService.getNftMetadata(
-          contractAddress,
-          tokenId
-        );
+        await this.httpServiceWrapper.openSeaService.getNftMetadata(contractAddress, tokenId);
 
-      this.nftMetadata = {
+      const nftMetadata: NftMetadataContract = {
         address: response.asset_contract.address,
         tokenId: response.token_id,
         imageUrl: response.image_original_url,
@@ -36,7 +32,7 @@ export class OpenSea implements IMarketplace {
         createdAt: response.asset_contract.created_date,
       };
 
-      return this.nftMetadata;
+      return nftMetadata;
     } catch (error) {
       throw new Error("Could not communicate with OpenSea Api.");
     }

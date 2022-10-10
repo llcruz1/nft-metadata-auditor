@@ -17,10 +17,7 @@ function App() {
         }
         setIsLoading(true);
         const nftUrl = new URL(url);
-        const marketplace = new MarketplaceFactory(
-          new HttpServiceWrapper(),
-          nftUrl
-        ).create();
+        const marketplace = new MarketplaceFactory(new HttpServiceWrapper(), nftUrl).create();
         const metadata = await marketplace.getMetadata(nftUrl);
         setNftMetadata(metadata);
       } catch (error) {
