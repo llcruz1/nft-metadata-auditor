@@ -1,3 +1,4 @@
+import { TupleType } from "typescript";
 import { IHttpServiceWrapper } from "../models/HttpServices/IHttpServiceWrapper";
 import { IMarketplace } from "../models/Marketplace/IMarketplace";
 import { NftMetadataContract } from "../models/Nft/NftMetadataContract";
@@ -12,13 +13,9 @@ export class OpenSea implements IMarketplace {
     this.httpServiceWrapper = httpServices;
   }
 
-  async getMetadata(nftUrl: URL): Promise<NftMetadataContract | undefined> {
+  public async getMetadata(nftUrl: URL): Promise<NftMetadataContract | undefined> {
+    const [contractAddress, tokenId] = this.getContractAddressAndTokenIdFromUrl(nftUrl);
     try {
-      const pathname = nftUrl.pathname as OpenSeaNftPathname;
-      const routeParams = pathname.split("/");
-      const contractAddress = routeParams[3];
-      const tokenId = routeParams[4];
-
       const response: OpenSeaMetadataResponse =
         await this.httpServiceWrapper.openSeaService.getNftMetadata(contractAddress, tokenId);
 
@@ -35,6 +32,18 @@ export class OpenSea implements IMarketplace {
       return nftMetadata;
     } catch (error) {
       throw new Error("Could not communicate with OpenSea Api.");
+    }
+  }
+
+  private getContractAddressAndTokenIdFromUrl(nftUrl: URL): [string, string] {
+    try {
+      const pathname = nftUrl.pathname as OpenSeaNftPathname;
+      const routeParams = pathname.split("/");
+      const contractAddress = routeParams[3];
+      const tokenId = routeParams[4];
+      return [contractAddress, tokenId];
+    } catch (error) {
+      throw new Error("Error when trying to parse URL");
     }
   }
 }

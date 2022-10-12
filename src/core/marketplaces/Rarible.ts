@@ -13,14 +13,9 @@ export class Rarible implements IMarketplace {
     this.httpServiceWrapper = httpServices;
   }
 
-  async getMetadata(nftUrl: URL): Promise<NftMetadataContract | undefined> {
+  public async getMetadata(nftUrl: URL): Promise<NftMetadataContract | undefined> {
+    const [contractAddress, tokenId] = this.getContractAddressAndTokenIdFromUrl(nftUrl);
     try {
-      const pathname = nftUrl.pathname as RaribleNftPathname;
-      const routeParams = pathname.split("/");
-      const tokenParams = routeParams[2].split(":");
-      const contractAddress = tokenParams[0];
-      const tokenId = tokenParams[1];
-
       const response: RaribleMetadataResponse =
         await this.httpServiceWrapper.raribleService.getNftMetadata(contractAddress, tokenId);
 
@@ -36,6 +31,19 @@ export class Rarible implements IMarketplace {
       return nftMetadata;
     } catch (error) {
       throw new Error("Could not communicate with Rarible Api.");
+    }
+  }
+
+  private getContractAddressAndTokenIdFromUrl(nftUrl: URL): [string, string] {
+    try {
+      const pathname = nftUrl.pathname as RaribleNftPathname;
+      const routeParams = pathname.split("/");
+      const tokenParams = routeParams[2].split(":");
+      const contractAddress = tokenParams[0];
+      const tokenId = tokenParams[1];
+      return [contractAddress, tokenId];
+    } catch (error) {
+      throw new Error("Error when trying to parse URL");
     }
   }
 }
