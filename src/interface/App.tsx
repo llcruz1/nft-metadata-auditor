@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { NftMetadataAnalyzer } from "../core/analyzer/NftMetadataAnalyzer";
 import { MarketplaceFactory } from "../core/factory/MarketplaceFactory";
+import { AnalyzedNftContract } from "../core/models/Analyzer/AnalyzedNftContract";
 import { NftMetadataContract } from "../core/models/Nft/NftMetadataContract";
 import { HttpServiceWrapper } from "../core/services/HttpServiceWrapper";
 
@@ -8,6 +10,7 @@ function App() {
   const [url, setUrl] = useState("");
   const [nftMetadata, setNftMetadata] = useState<NftMetadataContract>();
   const [isLoading, setIsLoading] = useState(false);
+  const [analyzedData, setAnalyzedData] = useState<AnalyzedNftContract>();
 
   useEffect(() => {
     async function getMetadataFromNftUrl() {
@@ -20,6 +23,11 @@ function App() {
         const marketplace = new MarketplaceFactory(new HttpServiceWrapper(), nftUrl).create();
         const metadata = await marketplace.getMetadata(nftUrl);
         setNftMetadata(metadata);
+        setAnalyzedData(
+          NftMetadataAnalyzer.getHostingInformationFromUrl(
+            new URL(metadata?.imageUrl ?? metadata!.imageUrl),
+          ),
+        );
       } catch (error) {
         console.log(error);
       } finally {
@@ -70,6 +78,11 @@ function App() {
             <p>
               <b>Image Url: </b>
               {nftMetadata?.imageUrl}
+            </p>
+            <p>
+              <b>
+                {analyzedData?.isDescentralized ? "Descentralized Server" : "Centralized Server"}{" "}
+              </b>
             </p>
             <p>
               <b>Created At: </b> {nftMetadata?.createdAt}
