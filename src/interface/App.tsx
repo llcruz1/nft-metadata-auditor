@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { MarketplaceFactory } from "./factory/MarketplaceFactory";
-import { NftMetadataContract } from "./models/Nft/NftMetadataContract";
-import { HttpServiceWrapper } from "./services/HttpServiceWrapper";
+import { MarketplaceFactory } from "../core/factory/MarketplaceFactory";
+import { NftMetadataContract } from "../core/models/Nft/NftMetadataContract";
+import { HttpServiceWrapper } from "../core/services/HttpServiceWrapper";
 
 function App() {
   const [url, setUrl] = useState("");
