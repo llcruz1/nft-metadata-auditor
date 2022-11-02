@@ -1,4 +1,3 @@
-import { TupleType } from "typescript";
 import { IHttpServiceWrapper } from "../models/HttpServices/IHttpServiceWrapper";
 import { IMarketplace } from "../models/Marketplace/IMarketplace";
 import { NftMetadataContract } from "../models/Nft/NftMetadataContract";

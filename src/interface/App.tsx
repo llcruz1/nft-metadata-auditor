@@ -81,7 +81,7 @@ function App() {
             </p>
             <p>
               <b>
-                {analyzedData?.isDescentralized ? "Descentralized Server" : "Centralized Server"}{" "}
+                {analyzedData?.isDescentralized ? "Descentralized Server" : "Centralized Server"}
               </b>
             </p>
             <p>
