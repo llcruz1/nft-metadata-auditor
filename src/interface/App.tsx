@@ -5,12 +5,18 @@ import { MarketplaceFactory } from "../core/factory/MarketplaceFactory";
 import { AnalyzedNftContract } from "../core/models/Analyzer/AnalyzedNftContract";
 import { NftMetadataContract } from "../core/models/Nft/NftMetadataContract";
 import { HttpServiceWrapper } from "../core/services/HttpServiceWrapper";
+import Web3Service from "../core/services/Web3Service";
+import { NftMetadataViewer } from "./components/NftMetadataViewer";
 
 function App() {
   const [url, setUrl] = useState("");
+  const [nftAddress, setNftAddress] = useState("");
+  const [nftTokenId, setNftTokenId] = useState("");
   const [nftMetadata, setNftMetadata] = useState<NftMetadataContract>();
   const [isLoading, setIsLoading] = useState(false);
   const [analyzedData, setAnalyzedData] = useState<AnalyzedNftContract>();
+
+  const { ethereum } = window as any;
 
   useEffect(() => {
     async function getMetadataFromNftUrl() {
@@ -38,12 +44,37 @@ function App() {
     getMetadataFromNftUrl();
   }, [url]);
 
+  useEffect(() => {
+    async function getMetadataFromNftAddressAndTokenId() {
+      try {
+        if (!(nftAddress && nftTokenId)) {
+          return;
+        }
+        setIsLoading(true);
+        const web3Service = Web3Service;
+        const metadata = await web3Service.getNftMetadata(nftAddress, nftTokenId);
+        setNftMetadata(metadata);
+        setAnalyzedData(
+          NftMetadataAnalyzer.getHostingInformationFromUrl(
+            new URL(metadata?.imageUrl ?? metadata!.imageUrl),
+          ),
+        );
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    getMetadataFromNftAddressAndTokenId();
+  }, [nftAddress, nftTokenId]);
+
   return (
     <div className="App">
       <h1>NFT Metadata Auditor</h1>
 
       <p>
-        Paste an NFT page from OpenSea or Rarible here. Example:
+        Paste a NFT page from OpenSea or Rarible here. Example:
         <a
           target="_blank"
           rel="noReferrer"
@@ -58,38 +89,27 @@ function App() {
         style={{ width: "550px" }}
         onChange={(e) => setUrl(e.target.value)}
       ></input>
-      {isLoading && <div>Loading...</div>}
-      {nftMetadata && (
-        <div style={{ display: "flex", marginTop: "20px" }}>
-          <div>
-            <img
-              src={nftMetadata?.imageUrl}
-              alt="NFT"
-              style={{ height: "200px", width: "auto", marginRight: "20px" }}
-            ></img>
-          </div>
-          <div>
-            <h3>{nftMetadata?.name}</h3>
-            <p>{nftMetadata?.description}</p>
-            <br />
-            <p>
-              <b>Address: </b> {nftMetadata?.address}
-            </p>
-            <p>
-              <b>Image Url: </b>
-              {nftMetadata?.imageUrl}
-            </p>
-            <p>
-              <b>
-                {analyzedData?.isDescentralized ? "Descentralized Server" : "Centralized Server"}
-              </b>
-            </p>
-            <p>
-              <b>Created At: </b> {nftMetadata?.createdAt}
-            </p>
-          </div>
+      <br />
+
+      {ethereum && (
+        <div>
+          <p>Or paste a NFT address here</p>
+          <input
+            type="text"
+            style={{ width: "550px" }}
+            onChange={(e) => setNftAddress(e.target.value)}
+          ></input>
+          <p>... and the token Id here</p>
+          <input
+            type="text"
+            style={{ width: "100px" }}
+            onChange={(e) => setNftTokenId(e.target.value)}
+          ></input>
         </div>
       )}
+
+      {isLoading && <div>Loading...</div>}
+      {nftMetadata && <NftMetadataViewer nftMetadata={nftMetadata} analyzedData={analyzedData} />}
     </div>
   );
 }

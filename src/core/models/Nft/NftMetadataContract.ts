@@ -5,5 +5,6 @@ export interface NftMetadataContract {
   name: string;
   collectionSymbol?: string;
   description: string;
-  createdAt: string;
+  createdAt?: string;
+  symbol?: string;
 }
