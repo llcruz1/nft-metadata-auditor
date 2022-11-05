@@ -7,4 +7,5 @@ export enum DescentralizedStorageEnum {
   Skynet = "siasky.net",
   Zerochain = "0chain.net",
   CrustNetwork = "crust.network",
+  Swarm = "gateway.ethswarm",
 }
