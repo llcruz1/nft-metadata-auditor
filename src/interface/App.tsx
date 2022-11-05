@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { NftMetadataAnalyzer } from "../core/analyzer/NftMetadataAnalyzer";
+import { TokenStandardEnum } from "../core/enums/TokenStandardEnum";
 import { MarketplaceFactory } from "../core/factory/MarketplaceFactory";
 import { AnalyzedNftContract } from "../core/models/Analyzer/AnalyzedNftContract";
 import { NftMetadataContract } from "../core/models/Nft/NftMetadataContract";
@@ -12,10 +13,14 @@ function App() {
   const [url, setUrl] = useState("");
   const [nftAddress, setNftAddress] = useState("");
   const [nftTokenId, setNftTokenId] = useState("");
+  const [nftTokenStandard, setNftTokenStandard] = useState<TokenStandardEnum>(
+    TokenStandardEnum.ERC721,
+  );
   const [nftMetadata, setNftMetadata] = useState<NftMetadataContract>();
   const [isLoading, setIsLoading] = useState(false);
   const [analyzedData, setAnalyzedData] = useState<AnalyzedNftContract>();
 
+  const tokenStandards = Object.values(TokenStandardEnum);
   const { ethereum } = window as any;
 
   useEffect(() => {
@@ -32,6 +37,7 @@ function App() {
         setAnalyzedData(
           NftMetadataAnalyzer.getHostingInformationFromUrl(
             new URL(metadata?.imageUrl ?? metadata!.imageUrl),
+            new URL(metadata?.jsonMetadataUrl ?? metadata!.jsonMetadataUrl),
           ),
         );
       } catch (error) {
@@ -47,16 +53,17 @@ function App() {
   useEffect(() => {
     async function getMetadataFromNftAddressAndTokenId() {
       try {
-        if (!(nftAddress && nftTokenId)) {
+        if (!(nftAddress && nftTokenId && nftTokenStandard)) {
           return;
         }
         setIsLoading(true);
         const web3Service = Web3Service;
-        const metadata = await web3Service.getNftMetadata(nftAddress, nftTokenId);
+        const metadata = await web3Service.getNftMetadata(nftAddress, nftTokenId, nftTokenStandard);
         setNftMetadata(metadata);
         setAnalyzedData(
           NftMetadataAnalyzer.getHostingInformationFromUrl(
             new URL(metadata?.imageUrl ?? metadata!.imageUrl),
+            new URL(metadata?.jsonMetadataUrl ?? metadata!.jsonMetadataUrl),
           ),
         );
       } catch (error) {
@@ -67,7 +74,7 @@ function App() {
     }
 
     getMetadataFromNftAddressAndTokenId();
-  }, [nftAddress, nftTokenId]);
+  }, [nftAddress, nftTokenId, nftTokenStandard]);
 
   return (
     <div className="App">
@@ -91,7 +98,7 @@ function App() {
       ></input>
       <br />
 
-      {ethereum && (
+      {ethereum ? (
         <div>
           <p>Or paste a NFT address here</p>
           <input
@@ -105,7 +112,22 @@ function App() {
             style={{ width: "100px" }}
             onChange={(e) => setNftTokenId(e.target.value)}
           ></input>
+          <p>... and the token standard here</p>
+          <select
+            style={{ width: "100px" }}
+            onChange={(e) => setNftTokenStandard(e.target.value as TokenStandardEnum)}
+          >
+            {tokenStandards.map((tokenStandard) => (
+              <>
+                <option key={tokenStandard} value={tokenStandard}>
+                  {tokenStandard}
+                </option>
+              </>
+            ))}
+          </select>
         </div>
+      ) : (
+        <h1>Metamask is required</h1>
       )}
 
       {isLoading && <div>Loading...</div>}
