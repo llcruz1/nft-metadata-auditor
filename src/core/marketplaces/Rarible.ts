@@ -22,6 +22,7 @@ export class Rarible implements IMarketplace {
       const nftMetadata: NftMetadataContract = {
         address: response.contract?.split(":")[1] ?? "",
         tokenId: response.tokenId ?? "",
+        jsonMetadataUrl: "",
         imageUrl: response.meta?.content[0] ? response.meta?.content[0].url : "",
         name: response.meta?.name ?? "",
         description: response.meta?.description ?? "",

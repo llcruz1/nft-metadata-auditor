@@ -21,6 +21,7 @@ export class OpenSea implements IMarketplace {
       const nftMetadata: NftMetadataContract = {
         address: response.asset_contract.address,
         tokenId: response.token_id,
+        jsonMetadataUrl: "",
         imageUrl: response.image_original_url,
         name: response.name,
         collectionSymbol: response.asset_contract.symbol,
