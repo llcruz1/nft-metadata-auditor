@@ -25,7 +25,7 @@ function App() {
   const { ethereum } = window;
 
   useEffect(() => {
-    async function getMetadataFromNftUrl() {
+    async function getMetadataFromNftMarketplaceUrl() {
       try {
         if (!url) {
           return;
@@ -52,11 +52,11 @@ function App() {
       }
     }
 
-    getMetadataFromNftUrl();
+    getMetadataFromNftMarketplaceUrl();
   }, [url]);
 
   useEffect(() => {
-    async function getMetadataFromNftAddressAndTokenId() {
+    async function getMetadataFromNftProperties() {
       try {
         if (!(nftAddress && nftTokenId && nftTokenStandard)) {
           return;
@@ -78,7 +78,7 @@ function App() {
       }
     }
 
-    getMetadataFromNftAddressAndTokenId();
+    getMetadataFromNftProperties();
   }, [nftAddress, nftTokenId, nftTokenStandard]);
 
   if (!ethereum) {
