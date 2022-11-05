@@ -1,37 +1,30 @@
 import { IHttpServiceWrapper } from "../models/HttpServices/IHttpServiceWrapper";
 import { IMarketplace } from "../models/Marketplace/IMarketplace";
 import { NftMetadataContract } from "../models/Nft/NftMetadataContract";
-import { OpenSeaMetadataResponse } from "../models/OpenSea/OpenSeaMetadataResponse";
+import { IWeb3ServiceWrapper } from "../models/Web3Services/IWeb3ServiceWrapper";
 
 type OpenSeaNftPathname = `asset/ethereum/${string}/${string}}`;
 
 export class OpenSea implements IMarketplace {
   private readonly httpServiceWrapper: IHttpServiceWrapper;
+  private readonly web3ServiceWrapper: IWeb3ServiceWrapper;
 
-  constructor(httpServices: IHttpServiceWrapper) {
+  constructor(web3Services: IWeb3ServiceWrapper, httpServices: IHttpServiceWrapper) {
+    this.web3ServiceWrapper = web3Services;
     this.httpServiceWrapper = httpServices;
   }
 
-  public async getMetadata(nftUrl: URL): Promise<NftMetadataContract | undefined> {
+  public async getMetadata(nftUrl: URL): Promise<NftMetadataContract> {
     const [contractAddress, tokenId] = this.getContractAddressAndTokenIdFromUrl(nftUrl);
     try {
-      const response: OpenSeaMetadataResponse =
-        await this.httpServiceWrapper.openSeaService.getNftMetadata(contractAddress, tokenId);
-
-      const nftMetadata: NftMetadataContract = {
-        address: response.asset_contract.address,
-        tokenId: response.token_id,
-        jsonMetadataUrl: "",
-        imageUrl: response.image_original_url,
-        name: response.name,
-        collectionSymbol: response.asset_contract.symbol,
-        description: response.description,
-        createdAt: response.asset_contract.created_date,
-      };
+      const nftMetadata = await this.web3ServiceWrapper.nftMetadataService.getNftMetadata(
+        contractAddress,
+        tokenId,
+      );
 
       return nftMetadata;
     } catch (error) {
-      throw new Error("Could not communicate with OpenSea Api.");
+      throw new Error(`Unexpected error when request token metadata. ${error}`);
     }
   }
 

@@ -1,37 +1,30 @@
 import { IHttpServiceWrapper } from "../models/HttpServices/IHttpServiceWrapper";
 import { IMarketplace } from "../models/Marketplace/IMarketplace";
 import { NftMetadataContract } from "../models/Nft/NftMetadataContract";
-import { RaribleMetadataResponse } from "../models/Rarible/RaribleMetadataResponse";
+import { IWeb3ServiceWrapper } from "../models/Web3Services/IWeb3ServiceWrapper";
 
 // token/${contractAddress}:${tokenId}}
 type RaribleNftPathname = `token/${string}:${string}}`;
 
 export class Rarible implements IMarketplace {
   private readonly httpServiceWrapper: IHttpServiceWrapper;
+  private readonly web3ServiceWrapper: IWeb3ServiceWrapper;
 
-  constructor(httpServices: IHttpServiceWrapper) {
+  constructor(web3Services: IWeb3ServiceWrapper, httpServices: IHttpServiceWrapper) {
+    this.web3ServiceWrapper = web3Services;
     this.httpServiceWrapper = httpServices;
   }
 
-  public async getMetadata(nftUrl: URL): Promise<NftMetadataContract | undefined> {
+  public async getMetadata(nftUrl: URL): Promise<NftMetadataContract> {
     const [contractAddress, tokenId] = this.getContractAddressAndTokenIdFromUrl(nftUrl);
     try {
-      const response: RaribleMetadataResponse =
-        await this.httpServiceWrapper.raribleService.getNftMetadata(contractAddress, tokenId);
-
-      const nftMetadata: NftMetadataContract = {
-        address: response.contract?.split(":")[1] ?? "",
-        tokenId: response.tokenId ?? "",
-        jsonMetadataUrl: "",
-        imageUrl: response.meta?.content[0] ? response.meta?.content[0].url : "",
-        name: response.meta?.name ?? "",
-        description: response.meta?.description ?? "",
-        createdAt: response.mintedAt,
-      };
-
+      const nftMetadata = await this.web3ServiceWrapper.nftMetadataService.getNftMetadata(
+        contractAddress,
+        tokenId,
+      );
       return nftMetadata;
     } catch (error) {
-      throw new Error("Could not communicate with Rarible Api.");
+      throw new Error(`Unexpected error when trying to interact with smart contract. ${error}`);
     }
   }
 
