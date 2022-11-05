@@ -10,13 +10,15 @@ interface NftMetadataViewerProps {
 export function NftMetadataViewer({ nftMetadata, analyzedData }: NftMetadataViewerProps) {
   return (
     <div style={{ display: "flex", marginTop: "20px" }}>
-      <div>
-        <img
-          src={nftMetadata?.imageUrl}
-          alt="NFT"
-          style={{ height: "200px", width: "auto", marginRight: "20px" }}
-        ></img>
-      </div>
+      {nftMetadata?.imageUrl && (
+        <div>
+          <img
+            src={nftMetadata?.imageUrl}
+            alt="NFT"
+            style={{ height: "200px", width: "auto", marginRight: "20px" }}
+          ></img>
+        </div>
+      )}
       <div>
         <h3>{nftMetadata?.name}</h3>
         <p>{nftMetadata?.description}</p>
@@ -25,9 +27,15 @@ export function NftMetadataViewer({ nftMetadata, analyzedData }: NftMetadataView
           <b>Address: </b> {nftMetadata?.address}
         </p>
         <p>
-          <b>Image Url: </b>
-          {nftMetadata?.imageUrl}
+          <b>Metadata Url: </b>
+          {nftMetadata?.jsonMetadataUrl}
         </p>
+        {nftMetadata?.imageUrl && (
+          <p>
+            <b>Image Url: </b>
+            {nftMetadata?.imageUrl}
+          </p>
+        )}
         <p>
           <b>{analyzedData?.isDescentralized ? "Descentralized Server" : "Centralized Server"}</b>
         </p>

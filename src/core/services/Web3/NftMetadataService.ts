@@ -7,6 +7,7 @@ import { NftMetadataContract } from "../../models/Nft/NftMetadataContract";
 import HttpServiceWrapper from "../Http/HttpServiceWrapper";
 import { TokenStandardEnum } from "../../enums/TokenStandardEnum";
 import { INftMetadataService } from "../../models/Web3Services/INftMetadataService";
+import { NftTokenUriResponse } from "../../models/Nft/NftTokenUriResponse";
 
 class NftMetadataService implements INftMetadataService {
   private readonly httpServiceWrapper: IHttpServiceWrapper;
@@ -39,9 +40,7 @@ class NftMetadataService implements INftMetadataService {
       const symbol = (await nftContract.symbol()) as string;
       const tokenUri = (await nftContract.tokenURI(tokenId)) as string;
 
-      const tokenUriData = await this.httpServiceWrapper.tokenUriService.getMetadataFromTokenUri(
-        tokenUri,
-      );
+      const tokenUriData = await this.getTokenUriData(tokenUri);
 
       const nftMetadata: NftMetadataContract = {
         address: contractAddress,
@@ -66,16 +65,14 @@ class NftMetadataService implements INftMetadataService {
       const multiTokenUri = (await nftContract.uri(tokenId)) as string;
       const tokenUri = multiTokenUri.replace("0x{id}", tokenId);
 
-      const tokenUriData = await this.httpServiceWrapper.tokenUriService.getMetadataFromTokenUri(
-        tokenUri,
-      );
+      const tokenUriData = await this.getTokenUriData(tokenUri);
 
       const nftMetadata: NftMetadataContract = {
         address: contractAddress,
         tokenId: tokenId,
         jsonMetadataUrl: tokenUri,
         imageUrl: tokenUriData.image,
-        name: "",
+        name: tokenUriData.name,
         symbol: "",
         description: tokenUriData.description,
       };
@@ -83,6 +80,20 @@ class NftMetadataService implements INftMetadataService {
       return nftMetadata;
     } catch (error) {
       throw new Error(`Unexpected error when interacting with ERC-1155 token. ${error}`);
+    }
+  }
+
+  private async getTokenUriData(tokenUri: string): Promise<NftTokenUriResponse> {
+    /// I created this try/catch block because sometimes the tokenUri's server doesn't allow requests from localhost (CORS error)
+    try {
+      return await this.httpServiceWrapper.tokenUriService.getMetadataFromTokenUri(tokenUri);
+    } catch (error) {
+      const emptyUriResponse: NftTokenUriResponse = {
+        image: "",
+        description: "",
+        name: "",
+      };
+      return emptyUriResponse;
     }
   }
 
