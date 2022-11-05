@@ -37,7 +37,7 @@ export function NftMetadataViewer({ nftMetadata, analyzedData }: NftMetadataView
           </p>
         )}
         <p>
-          <b>{analyzedData?.isDescentralized ? "Descentralized Server" : "Centralized Server"}</b>
+          <b>{analyzedData?.isDecentralized ? "Descentralized Server" : "Centralized Server"}</b>
         </p>
       </div>
     </div>

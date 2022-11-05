@@ -1,4 +1,4 @@
 export interface AnalyzedNftContract {
-  isDescentralized: boolean;
+  isDecentralized: boolean;
   hostingProvider: string;
 }

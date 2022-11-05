@@ -106,7 +106,7 @@ function App() {
       ) : (
         <>
           <p>
-            Paste a NFT page from OpenSea or Rarible here. Example:
+            Paste a NFT page from OpenSea or Rarible here. Example:{" "}
             <a
               target="_blank"
               rel="noReferrer"
@@ -136,7 +136,7 @@ function App() {
               style={{ width: "100px" }}
               onChange={(e) => setNftTokenId(e.target.value)}
             ></input>
-            <p>... and the token standard here</p>
+            <p>... and select the token standard here</p>
             <select
               style={{ width: "100px" }}
               onChange={(e) => setNftTokenStandard(e.target.value as TokenStandardEnum)}
