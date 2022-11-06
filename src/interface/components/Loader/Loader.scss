@@ -1,7 +1,8 @@
 @import "../../global.scss";
 
-$colors: var(--blue), var(--light-blue), var(--blue), var(--light-blue), var(--blue), var(--blue),
-  var(--light-blue), var(--blue);
+$colors: var(--primary-theme-color), var(--primary-theme-color-light), var(--primary-theme-color),
+  var(--primary-theme-color-light), var(--primary-theme-color), var(--primary-theme-color),
+  var(--primary-theme-color-light), var(--primary-theme-color);
 
 body {
   background-color: #3f51b5;

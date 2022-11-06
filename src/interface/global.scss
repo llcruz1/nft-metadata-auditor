@@ -1,9 +1,9 @@
 :root {
-  --dark-gray: #0a0a0b;
-  --gray: #252939;
-  --blue: #215bf0;
-  --light-blue: #228dff;
-  --white: #ffffff;
+  --primary-background-color-dark-theme: #1b1d29;
+  --secondary-background-color-dark-theme: #252939;
+  --primary-text-color-dark-theme: #ffffff;
+  --primary-theme-color: #215bf0;
+  --primary-theme-color-light: #228dff;
 }
 
 $--mobile-breakpoint: 600px;
@@ -12,19 +12,19 @@ $--tablet-breakpoint: 900px;
 * {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  color: var(--white);
+  color: var(--primary-text-color-dark-theme);
 }
 
 p {
   font-weight: 300;
-  color: var(--white);
+  color: var(--primary-text-color-dark-theme);
   margin: 10px;
 }
 
 label {
   display: block;
   font-weight: 300;
-  color: var(--white);
+  color: var(--primary-text-color-dark-theme);
   margin: 10px;
 }
 
@@ -34,8 +34,8 @@ select {
   margin: 10px;
   border: none;
   border-radius: 6px;
-  background-color: var(--gray);
-  color: var(--white);
+  background-color: var(--secondary-background-color-dark-theme);
+  color: var(--primary-text-color-dark-theme);
 }
 
 .overlay {
