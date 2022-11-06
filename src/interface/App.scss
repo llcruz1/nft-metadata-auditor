@@ -1,0 +1,58 @@
+@import "./global.scss";
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: linear-gradient(to right, var(--dark-gray), var(--gray));
+  padding: 10px;
+}
+
+.main-title {
+  color: var(--light-blue);
+  font-size: 64px;
+  padding-bottom: 50px;
+}
+
+.nft-url-form {
+  input {
+    width: 100%;
+  }
+
+  @media (max-width: $--mobile-breakpoint) {
+    flex-direction: column;
+    width: 100%;
+
+    input {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+.form-separator {
+  margin: 15px 0 15px 0;
+}
+
+.nft-properties-form {
+  display: flex;
+  flex-direction: row;
+
+  label {
+    text-align: left;
+  }
+
+  @media (max-width: $--mobile-breakpoint) {
+    flex-direction: column;
+    width: 100%;
+
+    input,
+    select {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}

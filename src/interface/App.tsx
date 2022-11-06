@@ -10,6 +10,8 @@ import Web3Service from "../core/services/Web3/NftMetadataService";
 import Web3ServiceWrapper from "../core/services/Web3/Web3ServiceWrapper";
 import { NftMetadataViewer } from "./components/NftMetadataViewer";
 import { DebounceInput } from "react-debounce-input";
+import "./App.scss";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   const [url, setUrl] = useState("");
@@ -97,7 +99,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>NFT Metadata Auditor</h1>
+      <h1 className="main-title">NFT Metadata Auditor</h1>
 
       {!ethereum ? (
         <h1>
@@ -108,56 +110,52 @@ function App() {
         </h1>
       ) : (
         <>
-          <p>
-            Paste a NFT page from OpenSea or Rarible here. Example:{" "}
-            <a
-              target="_blank"
-              rel="noReferrer"
-              href="https://opensea.io/assets/ethereum/0x394e3d3044fc89fcdd966d3cb35ac0b32b0cda91/9626"
-            >
-              https://opensea.io/assets/ethereum/0x394e3d3044fc89fcdd966d3cb35ac0b32b0cda91/9626
-            </a>
-          </p>
-          <br />
-          <DebounceInput
-            debounceTimeout={500}
-            type="text"
-            style={{ width: "550px" }}
-            onChange={(e) => setUrl(e.target.value)}
-          ></DebounceInput>
-          <br />
-
-          <div>
-            <p>Or paste a NFT address here</p>
+          <div className="nft-url-form">
+            <label>Paste a NFT page from OpenSea or Rarible here</label>
             <DebounceInput
               debounceTimeout={500}
               type="text"
-              style={{ width: "550px" }}
-              onChange={(e) => setNftAddress(e.target.value)}
+              placeholder="https://opensea.io/assets/ethereum/0x394e3d3044fc89fcdd966d3cb35ac0b32b0cda91/9626"
+              onChange={(e) => setUrl(e.target.value)}
             ></DebounceInput>
-            <p>... and the token Id here</p>
-            <DebounceInput
-              debounceTimeout={500}
-              type="text"
-              style={{ width: "100px" }}
-              onChange={(e) => setNftTokenId(e.target.value)}
-            ></DebounceInput>
-            <p>... and select the token standard here</p>
-            <select
-              style={{ width: "100px" }}
-              onChange={(e) => setNftTokenStandard(e.target.value as TokenStandardEnum)}
-            >
-              {tokenStandards.map((tokenStandard) => (
-                <>
-                  <option key={tokenStandard} value={tokenStandard}>
-                    {tokenStandard}
-                  </option>
-                </>
-              ))}
-            </select>
           </div>
 
-          {isLoading && <div>Loading...</div>}
+          <div className="form-separator">
+            <p>...or fill NFT properties below</p>
+          </div>
+
+          <div className="nft-properties-form">
+            <div className="nft-address-input">
+              <label>Address</label>
+              <DebounceInput
+                debounceTimeout={500}
+                type="text"
+                onChange={(e) => setNftAddress(e.target.value)}
+              ></DebounceInput>
+            </div>
+            <div className="nft-token-id-input">
+              <label>Token Id</label>
+              <DebounceInput
+                debounceTimeout={500}
+                type="text"
+                onChange={(e) => setNftTokenId(e.target.value)}
+              ></DebounceInput>
+            </div>
+            <div className="nft-token-standard-input">
+              <label>Token Standard</label>
+              <select onChange={(e) => setNftTokenStandard(e.target.value as TokenStandardEnum)}>
+                {tokenStandards.map((tokenStandard) => (
+                  <>
+                    <option key={tokenStandard} value={tokenStandard}>
+                      {tokenStandard}
+                    </option>
+                  </>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {isLoading && <Loader showOverlay={true} />}
           {nftMetadata && (
             <NftMetadataViewer nftMetadata={nftMetadata} analyzedData={analyzedData} />
           )}
