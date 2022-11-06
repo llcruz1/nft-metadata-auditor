@@ -1,0 +1,46 @@
+@import "../../global.scss";
+
+.modal-content {
+  position: fixed;
+  background: var(--secondary-background-color-dark-theme);
+  width: 50%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  border-radius: 6px;
+  word-wrap: break-word;
+
+  @media (max-width: $--tablet-breakpoint) {
+    width: 80%;
+  }
+
+  @media (max-width: $--mobile-breakpoint) {
+    width: 80%;
+  }
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row-reverse;
+
+  button {
+    font-size: large;
+    padding: 5px 10px 0 0px;
+    background: none;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}

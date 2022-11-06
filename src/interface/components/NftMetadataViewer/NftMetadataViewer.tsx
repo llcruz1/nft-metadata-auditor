@@ -1,6 +1,6 @@
 import React from "react";
-import { AnalyzedNftContract } from "../../core/models/Analyzer/AnalyzedNftContract";
-import { NftMetadataContract } from "../../core/models/Nft/NftMetadataContract";
+import { AnalyzedNftContract } from "../../../core/models/Analyzer/AnalyzedNftContract";
+import { NftMetadataContract } from "../../../core/models/Nft/NftMetadataContract";
 
 interface NftMetadataViewerProps {
   nftMetadata: NftMetadataContract;
@@ -9,20 +9,15 @@ interface NftMetadataViewerProps {
 
 export function NftMetadataViewer({ nftMetadata, analyzedData }: NftMetadataViewerProps) {
   return (
-    <div style={{ display: "flex", marginTop: "20px" }}>
+    <div className="nft-metadata-viewer-container">
       {nftMetadata?.imageUrl && (
         <div>
-          <img
-            src={nftMetadata?.imageUrl}
-            alt="NFT"
-            style={{ height: "200px", width: "auto", marginRight: "20px" }}
-          ></img>
+          <img src={nftMetadata?.imageUrl} alt="NFT"></img>
         </div>
       )}
       <div>
         <h3>{nftMetadata?.name}</h3>
         <p>{nftMetadata?.description}</p>
-        <br />
         <p>
           <b>Address: </b> {nftMetadata?.address}
         </p>

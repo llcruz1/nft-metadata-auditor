@@ -8,10 +8,11 @@ import { NftMetadataContract } from "../core/models/Nft/NftMetadataContract";
 import HttpServiceWrapper from "../core/services/Http/HttpServiceWrapper";
 import Web3Service from "../core/services/Web3/NftMetadataService";
 import Web3ServiceWrapper from "../core/services/Web3/Web3ServiceWrapper";
-import { NftMetadataViewer } from "./components/NftMetadataViewer";
+import { NftMetadataViewer } from "./components/NftMetadataViewer/NftMetadataViewer";
 import { DebounceInput } from "react-debounce-input";
 import "./App.scss";
 import Loader from "./components/Loader/Loader";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   const [url, setUrl] = useState("");
@@ -23,6 +24,7 @@ function App() {
   const [nftMetadata, setNftMetadata] = useState<NftMetadataContract | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [analyzedData, setAnalyzedData] = useState<AnalyzedNftContract>();
+  const [showModal, setShowModal] = useState(false);
 
   const tokenStandards = Object.values(TokenStandardEnum);
   const { ethereum } = window;
@@ -48,6 +50,7 @@ function App() {
             metadata?.imageUrl ? new URL(metadata.imageUrl) : null,
           ),
         );
+        setShowModal(true);
       } catch (error) {
         console.log(error);
         setNftMetadata(null);
@@ -75,6 +78,7 @@ function App() {
             metadata?.imageUrl ? new URL(metadata.imageUrl) : null,
           ),
         );
+        setShowModal(true);
       } catch (error) {
         console.log(error);
         setNftMetadata(null);
@@ -121,7 +125,7 @@ function App() {
           </div>
 
           <div className="form-separator">
-            <p>...or fill NFT properties below</p>
+            <p>...or paste NFT properties below</p>
           </div>
 
           <div className="nft-properties-form">
@@ -157,7 +161,14 @@ function App() {
 
           {isLoading && <Loader showOverlay={true} />}
           {nftMetadata && (
-            <NftMetadataViewer nftMetadata={nftMetadata} analyzedData={analyzedData} />
+            <Modal
+              showModal={showModal}
+              onClose={() => {
+                setShowModal(false);
+              }}
+            >
+              <NftMetadataViewer nftMetadata={nftMetadata} analyzedData={analyzedData} />
+            </Modal>
           )}
         </>
       )}

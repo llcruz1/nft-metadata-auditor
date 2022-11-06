@@ -36,6 +36,10 @@ select {
   border-radius: 6px;
   background-color: var(--secondary-background-color-dark-theme);
   color: var(--primary-text-color-dark-theme);
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .overlay {
