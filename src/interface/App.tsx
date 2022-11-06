@@ -9,6 +9,7 @@ import HttpServiceWrapper from "../core/services/Http/HttpServiceWrapper";
 import Web3Service from "../core/services/Web3/NftMetadataService";
 import Web3ServiceWrapper from "../core/services/Web3/Web3ServiceWrapper";
 import { NftMetadataViewer } from "./components/NftMetadataViewer";
+import { DebounceInput } from "react-debounce-input";
 
 function App() {
   const [url, setUrl] = useState("");
@@ -17,7 +18,7 @@ function App() {
   const [nftTokenStandard, setNftTokenStandard] = useState<TokenStandardEnum>(
     TokenStandardEnum.ERC721,
   );
-  const [nftMetadata, setNftMetadata] = useState<NftMetadataContract>();
+  const [nftMetadata, setNftMetadata] = useState<NftMetadataContract | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [analyzedData, setAnalyzedData] = useState<AnalyzedNftContract>();
 
@@ -41,12 +42,13 @@ function App() {
         setNftMetadata(metadata);
         setAnalyzedData(
           NftMetadataAnalyzer.getHostingInformationFromUrl(
-            new URL(metadata?.imageUrl ?? metadata!.imageUrl),
             new URL(metadata?.jsonMetadataUrl ?? metadata!.jsonMetadataUrl),
+            metadata?.imageUrl ? new URL(metadata.imageUrl) : null,
           ),
         );
       } catch (error) {
         console.log(error);
+        setNftMetadata(null);
       } finally {
         setIsLoading(false);
       }
@@ -67,12 +69,13 @@ function App() {
         setNftMetadata(metadata);
         setAnalyzedData(
           NftMetadataAnalyzer.getHostingInformationFromUrl(
-            new URL(metadata?.imageUrl ?? metadata!.imageUrl),
             new URL(metadata?.jsonMetadataUrl ?? metadata!.jsonMetadataUrl),
+            metadata?.imageUrl ? new URL(metadata.imageUrl) : null,
           ),
         );
       } catch (error) {
         console.log(error);
+        setNftMetadata(null);
       } finally {
         setIsLoading(false);
       }
@@ -116,26 +119,29 @@ function App() {
             </a>
           </p>
           <br />
-          <input
+          <DebounceInput
+            debounceTimeout={500}
             type="text"
             style={{ width: "550px" }}
             onChange={(e) => setUrl(e.target.value)}
-          ></input>
+          ></DebounceInput>
           <br />
 
           <div>
             <p>Or paste a NFT address here</p>
-            <input
+            <DebounceInput
+              debounceTimeout={500}
               type="text"
               style={{ width: "550px" }}
               onChange={(e) => setNftAddress(e.target.value)}
-            ></input>
+            ></DebounceInput>
             <p>... and the token Id here</p>
-            <input
+            <DebounceInput
+              debounceTimeout={500}
               type="text"
               style={{ width: "100px" }}
               onChange={(e) => setNftTokenId(e.target.value)}
-            ></input>
+            ></DebounceInput>
             <p>... and select the token standard here</p>
             <select
               style={{ width: "100px" }}
