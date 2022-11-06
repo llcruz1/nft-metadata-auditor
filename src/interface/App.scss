@@ -13,7 +13,9 @@
 }
 
 .main-title {
-  color: var(--primary-theme-color-light);
+  background-image: linear-gradient(60deg, #22c0ff, var(--primary-theme-color));
+  background-clip: text;
+  color: transparent;
   font-size: 64px;
   padding-bottom: 50px;
 }
