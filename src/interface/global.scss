@@ -9,7 +9,14 @@
 $--mobile-breakpoint: 600px;
 $--tablet-breakpoint: 900px;
 
-* {
+body {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
   margin: 0;
   font-family: "Roboto", sans-serif;
   color: var(--primary-text-color-dark-theme);
@@ -31,7 +38,6 @@ label {
 input,
 select {
   padding: 10px;
-  margin: 10px;
   border: none;
   border-radius: 6px;
   background-color: var(--secondary-background-color-dark-theme);
