@@ -24,7 +24,8 @@ export class OpenSea implements IMarketplace {
 
       return nftMetadata;
     } catch (error) {
-      throw new Error(`Unexpected error when request token metadata. ${error}`);
+      console.log(error);
+      throw new Error(`Unexpected error when requesting token metadata`);
     }
   }
 

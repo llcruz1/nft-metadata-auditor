@@ -13,6 +13,7 @@ import { DebounceInput } from "react-debounce-input";
 import "./App.scss";
 import Loader from "./components/Loader/Loader";
 import Modal from "./components/Modal/Modal";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   const [url, setUrl] = useState("");
@@ -52,7 +53,9 @@ function App() {
         );
         setShowModal(true);
       } catch (error) {
-        console.log(error);
+        if (error instanceof Error) {
+          toast.error(error.message);
+        }
         setNftMetadata(null);
       } finally {
         setIsLoading(false);
@@ -80,7 +83,9 @@ function App() {
         );
         setShowModal(true);
       } catch (error) {
-        console.log(error);
+        if (error instanceof Error) {
+          toast.error(error.message);
+        }
         setNftMetadata(null);
       } finally {
         setIsLoading(false);
@@ -172,6 +177,21 @@ function App() {
           )}
         </>
       )}
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          className: "",
+          duration: 3000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+        }}
+      />
     </div>
   );
 }

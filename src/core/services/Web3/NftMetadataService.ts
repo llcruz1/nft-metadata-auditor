@@ -54,7 +54,8 @@ class NftMetadataService implements INftMetadataService {
 
       return nftMetadata;
     } catch (error) {
-      throw new Error(`Unexpected error when interacting with ERC-721 token. ${error}`);
+      console.log(error);
+      throw new Error(`Unexpected error when interacting with ERC-721 token.`);
     }
   }
 
@@ -79,7 +80,8 @@ class NftMetadataService implements INftMetadataService {
 
       return nftMetadata;
     } catch (error) {
-      throw new Error(`Unexpected error when interacting with ERC-1155 token. ${error}`);
+      console.log(error);
+      throw new Error(`Unexpected error when interacting with ERC-1155 token.`);
     }
   }
 

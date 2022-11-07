@@ -24,7 +24,8 @@ export class Rarible implements IMarketplace {
       );
       return nftMetadata;
     } catch (error) {
-      throw new Error(`Unexpected error when trying to interact with smart contract. ${error}`);
+      console.log(error);
+      throw new Error(`Unexpected error when trying to interact with smart contract. `);
     }
   }
 
