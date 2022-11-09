@@ -1,7 +1,7 @@
 :root {
-  --primary-background-color-dark-theme: #1b1d29;
-  --secondary-background-color-dark-theme: #252939;
-  --primary-text-color-dark-theme: #ffffff;
+  --primary-background-color: #1b1d29;
+  --secondary-background-color: #252939;
+  --primary-text-color: #ffffff;
   --primary-theme-color: #215bf0;
   --primary-theme-color-light: #228dff;
 }
@@ -19,19 +19,19 @@ body {
   box-sizing: inherit;
   margin: 0;
   font-family: "Roboto", sans-serif;
-  color: var(--primary-text-color-dark-theme);
+  color: var(--primary-text-color);
 }
 
 p {
   font-weight: 300;
-  color: var(--primary-text-color-dark-theme);
+  color: var(--primary-text-color);
   margin: 10px;
 }
 
 label {
   display: block;
   font-weight: 300;
-  color: var(--primary-text-color-dark-theme);
+  color: var(--primary-text-color);
   margin: 10px;
 }
 
@@ -40,8 +40,8 @@ select {
   padding: 10px;
   border: none;
   border-radius: 6px;
-  background-color: var(--secondary-background-color-dark-theme);
-  color: var(--primary-text-color-dark-theme);
+  background-color: var(--secondary-background-color);
+  color: var(--primary-text-color);
 
   &:focus {
     outline: none;
