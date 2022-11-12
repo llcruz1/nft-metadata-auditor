@@ -14,8 +14,8 @@ import "./App.scss";
 import Loader from "./components/Loader/Loader";
 import Modal from "./components/Modal/Modal";
 import toast, { Toaster } from "react-hot-toast";
-
 import Header from "./components/Header/Header";
+import MetamaskInstall from "./components/MetamaskInstall/MetamaskInstall";
 
 function App() {
   const [url, setUrl] = useState("");
@@ -97,28 +97,12 @@ function App() {
     getMetadataFromNftProperties();
   }, [nftAddress, nftTokenId, nftTokenStandard]);
 
-  if (!ethereum) {
-    return (
-      <h1>
-        You need Metamask installed to use this application.
-        <a target="_blank" rel="noReferrer" href="https://metamask.io/download/">
-          Download it here
-        </a>{" "}
-      </h1>
-    );
-  }
-
   return (
     <div className="App">
       <Header />
 
       {!ethereum ? (
-        <h1>
-          You need Metamask installed to use this application.
-          <a target="_blank" rel="noReferrer" href="https://metamask.io/download/">
-            Download it here
-          </a>
-        </h1>
+        <MetamaskInstall />
       ) : (
         <>
           <div className="nft-url-form">

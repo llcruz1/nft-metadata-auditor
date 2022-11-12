@@ -12,6 +12,14 @@ $--tablet-breakpoint: 900px;
 
 body {
   box-sizing: border-box;
+  background-color: var(--primary-background-color);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
 }
 
 *,
