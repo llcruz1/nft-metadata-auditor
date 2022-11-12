@@ -27,13 +27,18 @@
   flex-direction: row-reverse;
 
   button {
-    font-size: large;
-    padding: 5px 10px 0 0px;
+    font-size: 15px;
+    padding: 0px 15px 0 0px;
     background: none;
     border: none;
+    transition-duration: 0.2s;
+    width: 10px;
+    height: 10px;
 
     &:hover {
       cursor: pointer;
+      font-size: 20px;
+      margin-right: 1px;
     }
   }
 }

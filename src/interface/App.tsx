@@ -15,6 +15,8 @@ import Loader from "./components/Loader/Loader";
 import Modal from "./components/Modal/Modal";
 import toast, { Toaster } from "react-hot-toast";
 
+import Header from "./components/Header/Header";
+
 function App() {
   const [url, setUrl] = useState("");
   const [nftAddress, setNftAddress] = useState("");
@@ -108,7 +110,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="main-title">NFT Metadata Auditor</h1>
+      <Header />
 
       {!ethereum ? (
         <h1>

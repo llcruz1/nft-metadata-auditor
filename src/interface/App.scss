@@ -11,18 +11,6 @@
   padding: 10px;
 }
 
-.main-title {
-  background-image: linear-gradient(60deg, #22c0ff, var(--primary-theme-color));
-  background-clip: text;
-  color: transparent;
-  font-size: 64px;
-  padding-bottom: 50px;
-
-  @media (max-width: $--mobile-breakpoint) {
-    font-size: 48px;
-  }
-}
-
 .nft-url-form {
   input {
     width: 100%;
