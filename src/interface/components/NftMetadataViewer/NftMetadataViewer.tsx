@@ -10,7 +10,9 @@ interface NftMetadataViewerProps {
 
 export function NftMetadataViewer({ nftMetadata, analyzedData }: NftMetadataViewerProps) {
   return (
-    <div className="nft-metadata-viewer-container">
+    <div
+      className={`nft-metadata-viewer-container ${nftMetadata?.imageUrl ? "align-responsive" : ""}`}
+    >
       {nftMetadata?.imageUrl && (
         <div className="nft-img-container">
           <img src={nftMetadata?.imageUrl} alt="NFT"></img>
