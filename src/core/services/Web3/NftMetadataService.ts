@@ -21,68 +21,71 @@ class NftMetadataService implements INftMetadataService {
   public async getNftMetadata(
     contractAddress: string,
     tokenId: string,
-    tokenStandard: TokenStandardEnum = TokenStandardEnum.ERC721,
+    tokenStandard: TokenStandardEnum = TokenStandardEnum.Undefined,
   ): Promise<NftMetadataContract> {
-    await this.connectToMetamask();
+    try {
+      await this.connectToMetamask();
 
-    if (tokenStandard === TokenStandardEnum.ERC721) {
-      return await this.getErc721Metadata(contractAddress, tokenId);
+      if (tokenStandard === TokenStandardEnum.Undefined) {
+        try {
+          return await this.getErc721Metadata(contractAddress, tokenId);
+        } catch (error) {
+          return await this.getErc1155Metadata(contractAddress, tokenId);
+        }
+      }
+
+      if (tokenStandard === TokenStandardEnum.ERC721) {
+        return await this.getErc721Metadata(contractAddress, tokenId);
+      }
+
+      return this.getErc1155Metadata(contractAddress, tokenId);
+    } catch (error) {
+      console.log(error);
+      throw new Error("Unexpected error when interacting with token.");
     }
-
-    return this.getErc1155Metadata(contractAddress, tokenId);
   }
 
   private async getErc721Metadata(contractAddress: string, tokenId: string) {
-    try {
-      const nftContract = new ethers.Contract(contractAddress, erc721Abi, this.signer);
+    const nftContract = new ethers.Contract(contractAddress, erc721Abi, this.signer);
 
-      const name = (await nftContract.name()) as string;
-      const symbol = (await nftContract.symbol()) as string;
-      const tokenUri = (await nftContract.tokenURI(tokenId)) as string;
+    const name = (await nftContract.name()) as string;
+    const symbol = (await nftContract.symbol()) as string;
+    const tokenUri = (await nftContract.tokenURI(tokenId)) as string;
 
-      const tokenUriData = await this.getTokenUriData(tokenUri);
+    const tokenUriData = await this.getTokenUriData(tokenUri);
 
-      const nftMetadata: NftMetadataContract = {
-        address: contractAddress,
-        tokenId: tokenId,
-        jsonMetadataUrl: tokenUri,
-        imageUrl: tokenUriData.image,
-        name: name,
-        symbol: symbol,
-        description: tokenUriData.description,
-      };
+    const nftMetadata: NftMetadataContract = {
+      address: contractAddress,
+      tokenId: tokenId,
+      jsonMetadataUrl: tokenUri,
+      imageUrl: tokenUriData.image,
+      name: name,
+      symbol: symbol,
+      description: tokenUriData.description,
+    };
 
-      return nftMetadata;
-    } catch (error) {
-      console.log(error);
-      throw new Error(`Unexpected error when interacting with ERC-721 token.`);
-    }
+    return nftMetadata;
   }
 
   private async getErc1155Metadata(contractAddress: string, tokenId: string) {
-    try {
-      const nftContract = new ethers.Contract(contractAddress, erc1155Abi, this.signer);
+    const nftContract = new ethers.Contract(contractAddress, erc1155Abi, this.signer);
 
-      const multiTokenUri = (await nftContract.uri(tokenId)) as string;
-      const tokenUri = multiTokenUri.replace("0x{id}", tokenId);
+    const multiTokenUri = (await nftContract.uri(tokenId)) as string;
+    const tokenUri = multiTokenUri.replace("0x{id}", tokenId);
 
-      const tokenUriData = await this.getTokenUriData(tokenUri);
+    const tokenUriData = await this.getTokenUriData(tokenUri);
 
-      const nftMetadata: NftMetadataContract = {
-        address: contractAddress,
-        tokenId: tokenId,
-        jsonMetadataUrl: tokenUri,
-        imageUrl: tokenUriData.image,
-        name: tokenUriData.name,
-        symbol: "",
-        description: tokenUriData.description,
-      };
+    const nftMetadata: NftMetadataContract = {
+      address: contractAddress,
+      tokenId: tokenId,
+      jsonMetadataUrl: tokenUri,
+      imageUrl: tokenUriData.image,
+      name: tokenUriData.name,
+      symbol: "",
+      description: tokenUriData.description,
+    };
 
-      return nftMetadata;
-    } catch (error) {
-      console.log(error);
-      throw new Error(`Unexpected error when interacting with ERC-1155 token.`);
-    }
+    return nftMetadata;
   }
 
   private async getTokenUriData(tokenUri: string): Promise<NftTokenUriResponse> {
