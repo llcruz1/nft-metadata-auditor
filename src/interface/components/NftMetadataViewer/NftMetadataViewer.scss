@@ -1,0 +1,36 @@
+@import "../../global.scss";
+
+.nft-metadata-viewer-container {
+  display: flex;
+  text-align: left;
+  word-wrap: break-word;
+
+  .nft-img-container {
+    img {
+      border-radius: 5px;
+      width: 15vw;
+      height: auto;
+      margin-right: 15px;
+    }
+  }
+
+  .nft-name {
+    margin-left: 10px;
+  }
+
+  @media (max-width: $--tablet-breakpoint) {
+    flex-direction: column;
+    text-align: center;
+
+    .nft-img-container {
+      img {
+        width: 30vw;
+        margin-bottom: 15px;
+      }
+    }
+
+    .nft-name {
+      margin: 0;
+    }
+  }
+}
