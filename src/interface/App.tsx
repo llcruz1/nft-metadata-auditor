@@ -29,9 +29,7 @@ function App() {
   const [analyzedData, setAnalyzedData] = useState<AnalyzedNftContract>();
   const [showModal, setShowModal] = useState(false);
 
-  const tokenStandards = Object.values(TokenStandardEnum).filter(
-    (token) => token !== TokenStandardEnum.Undefined,
-  );
+  const tokenStandards = Object.values(TokenStandardEnum);
 
   const { ethereum } = window;
 

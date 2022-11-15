@@ -21,12 +21,12 @@ class NftMetadataService implements INftMetadataService {
   public async getNftMetadata(
     contractAddress: string,
     tokenId: string,
-    tokenStandard: TokenStandardEnum = TokenStandardEnum.Undefined,
+    tokenStandard: TokenStandardEnum | undefined = undefined,
   ): Promise<NftMetadataContract> {
     try {
       await this.connectToMetamask();
 
-      if (tokenStandard === TokenStandardEnum.Undefined) {
+      if (!tokenStandard) {
         try {
           return await this.getErc721Metadata(contractAddress, tokenId);
         } catch (error) {
