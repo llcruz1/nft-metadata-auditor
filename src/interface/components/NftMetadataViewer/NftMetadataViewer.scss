@@ -1,11 +1,12 @@
 @import "../../global.scss";
 
 .nft-metadata-viewer-container {
-  display: flex;
+  display: block;
   text-align: center;
   word-wrap: break-word;
 
   &.align-responsive {
+    display: flex;
     text-align: left;
   }
 
