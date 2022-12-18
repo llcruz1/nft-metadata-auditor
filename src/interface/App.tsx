@@ -49,7 +49,7 @@ function App() {
         const metadata = await marketplace.getMetadata(nftUrl);
         setNftMetadata(metadata);
         setAnalyzedData(
-          NftMetadataAnalyzer.getHostingInformationFromUrl(
+          NftMetadataAnalyzer.checkIfUrlIsDecentralized(
             new URL(metadata?.jsonMetadataUrl ?? metadata!.jsonMetadataUrl),
             metadata?.imageUrl ? new URL(metadata.imageUrl) : null,
           ),
@@ -79,7 +79,7 @@ function App() {
         const metadata = await web3Service.getNftMetadata(nftAddress, nftTokenId, nftTokenStandard);
         setNftMetadata(metadata);
         setAnalyzedData(
-          NftMetadataAnalyzer.getHostingInformationFromUrl(
+          NftMetadataAnalyzer.checkIfUrlIsDecentralized(
             new URL(metadata?.jsonMetadataUrl ?? metadata!.jsonMetadataUrl),
             metadata?.imageUrl ? new URL(metadata.imageUrl) : null,
           ),
