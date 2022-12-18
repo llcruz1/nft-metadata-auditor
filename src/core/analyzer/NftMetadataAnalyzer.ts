@@ -9,8 +9,12 @@ export class NftMetadataAnalyzer {
 
     const descentralizedStorageUrls = Object.values(DescentralizedStorageEnum) as string[];
 
+    const isDecentralized =
+      descentralizedStorageUrls.includes(jsonMetadataUrl.hostname) ||
+      jsonMetadataUrl.protocol === "ipfs:";
+
     const analyzedNftContract: AnalyzedNftContract = {
-      isDecentralized: descentralizedStorageUrls.includes(jsonMetadataUrl.hostname),
+      isDecentralized: isDecentralized,
       hostingProvider: "",
     };
 

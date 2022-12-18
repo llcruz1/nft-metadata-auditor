@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Request, Response } from "express";
-import { NftTokenUriResponse } from "../models/Nft";
+import { NftMetadataResponse, NftTokenUriInformation } from "../models/Nft";
 import dnsService from "../services/dnsService";
 
 class NftController {
@@ -10,7 +10,7 @@ class NftController {
 
       const tokenUriResponse = await axios.get(tokenUri);
 
-      const metadata: NftTokenUriResponse = tokenUriResponse.data;
+      const metadata: NftMetadataResponse = tokenUriResponse.data;
 
       const tokenIpAddress = await dnsService.dnsLookup(new URL(tokenUri).hostname);
 
@@ -18,14 +18,23 @@ class NftController {
 
       const whoisResult = await dnsService.whois(tokenIpAddress);
 
-      console.log(
-        "🚀 ~ file: NftController.ts ~ line 22 ~ NftController ~ getMetadata ~ whoisResult",
-        whoisResult,
-      );
+      console.log("Whois query result", whoisResult);
 
-      return response.json(metadata);
+      const nftMetadataResponse: NftTokenUriInformation = {
+        name: metadata.image,
+        image: metadata.image,
+        description: metadata.description,
+        hostingInformation: {
+          ipAddress: tokenIpAddress,
+          organization: whoisResult.organization,
+          country: whoisResult.country,
+        },
+      };
+
+      return response.json(nftMetadataResponse);
     } catch (error) {
       console.log("Unexpected exception: ", error);
+      return response.json();
     }
   }
 }

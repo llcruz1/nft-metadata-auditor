@@ -34,8 +34,24 @@ export function NftMetadataViewer({ nftMetadata, analyzedData }: NftMetadataView
           </p>
         )}
         <p>
-          <b>{analyzedData?.isDecentralized ? "Descentralized Server" : "Centralized Server"}</b>
+          <b>{analyzedData?.isDecentralized ? "Decentralized Server" : "Centralized Server"}</b>
         </p>
+        {nftMetadata.hostingInformation?.organization && !analyzedData?.isDecentralized && (
+          <div>
+            <p>
+              <b>IP Address: </b>
+              {nftMetadata.hostingInformation?.ipAddress}
+            </p>
+            <p>
+              <b>Hosting Provider: </b>
+              {nftMetadata.hostingInformation?.organization}
+            </p>
+            <p>
+              <b>Country: </b>
+              {nftMetadata.hostingInformation?.country}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

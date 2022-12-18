@@ -62,6 +62,7 @@ class NftMetadataService implements INftMetadataService {
       name: name,
       symbol: symbol,
       description: tokenUriData.description,
+      hostingInformation: tokenUriData.hostingInformation,
     };
 
     return nftMetadata;
@@ -83,6 +84,7 @@ class NftMetadataService implements INftMetadataService {
       name: tokenUriData.name,
       symbol: "",
       description: tokenUriData.description,
+      hostingInformation: tokenUriData.hostingInformation,
     };
 
     return nftMetadata;
@@ -97,6 +99,11 @@ class NftMetadataService implements INftMetadataService {
         image: "",
         description: "",
         name: "",
+        hostingInformation: {
+          ipAddress: "",
+          organization: "",
+          country: "",
+        },
       };
       return emptyUriResponse;
     }

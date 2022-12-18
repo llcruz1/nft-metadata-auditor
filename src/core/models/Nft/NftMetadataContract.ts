@@ -1,3 +1,5 @@
+import { HostingInformation } from "./NftTokenUriResponse";
+
 export interface NftMetadataContract {
   address: string;
   tokenId: string;
@@ -8,4 +10,5 @@ export interface NftMetadataContract {
   description: string;
   createdAt?: string;
   symbol?: string;
+  hostingInformation: HostingInformation;
 }
