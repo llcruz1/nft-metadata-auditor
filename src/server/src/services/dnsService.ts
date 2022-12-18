@@ -1,6 +1,7 @@
-import { IDnsService } from "../models/Dns";
+import { IDnsService, WhoisQueryResponse } from "../models/Dns";
 
 const dns = require("dns");
+const whois = require("whois-json");
 
 class DnsService implements IDnsService {
   async dnsLookup(hostname: string): Promise<string> {
@@ -10,6 +11,10 @@ class DnsService implements IDnsService {
         resolve(address);
       });
     });
+  }
+
+  async whois(ipAddress: string): Promise<WhoisQueryResponse> {
+    return await whois(ipAddress);
   }
 }
 

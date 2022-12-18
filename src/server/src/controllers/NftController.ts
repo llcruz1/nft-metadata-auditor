@@ -3,8 +3,6 @@ import { Request, Response } from "express";
 import { NftTokenUriResponse } from "../models/Nft";
 import dnsService from "../services/dnsService";
 
-const whois = require("whois-json");
-
 class NftController {
   async getMetadata(request: Request, response: Response) {
     try {
@@ -16,7 +14,9 @@ class NftController {
 
       const tokenIpAddress = await dnsService.dnsLookup(new URL(tokenUri).hostname);
 
-      const whoisResult = await whois(tokenIpAddress);
+      console.log("Token Ip Address:", tokenIpAddress);
+
+      const whoisResult = await dnsService.whois(tokenIpAddress);
 
       console.log(
         "🚀 ~ file: NftController.ts ~ line 22 ~ NftController ~ getMetadata ~ whoisResult",
