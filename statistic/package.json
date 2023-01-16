@@ -1,0 +1,29 @@
+{
+  "name": "statistic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "transform": [
+    "babelify"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@metamask/providers": "^10.2.1",
+    "babelify": "^10.0.0",
+    "esbuild": "0.17.1",
+    "ethers": "^5.7.2",
+    "nft-metadata-auditor": "file:..",
+    "post-message-stream": "^3.0.0"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.3.26",
+    "@types/post-message-stream": "^3.0.1",
+    "babel-preset-env": "^1.7.0",
+    "tsup": "^6.5.0",
+    "tsx": "^3.12.2"
+  }
+}

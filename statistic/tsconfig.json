@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
@@ -20,8 +20,8 @@
     "noEmit": true,
     "jsx": "preserve",
   },
-  "include": [
-    "src"
-, "jest.config.js", "jest.config.js"
-, "statistic"]
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+  }
 }
