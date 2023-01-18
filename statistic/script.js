@@ -1,7 +1,7 @@
-const { MarketplaceFactory } = require("./build2/factory/MarketplaceFactory");
-const { HttpServiceWrapper } = require("./build2/services/Http/HttpServiceWrapper");
-const { Web3ServiceWrapper } = require("./build2/services/Web3/Web3ServiceWrapper");
-const { NftMetadataAnalyzer } = require("./build2/analyzer/NftMetadataAnalyzer");
+const { MarketplaceFactory } = require("./build/factory/MarketplaceFactory");
+const { HttpServiceWrapper } = require("./build/services/Http/HttpServiceWrapper");
+const { Web3ServiceWrapper } = require("./build/services/Web3/Web3ServiceWrapper");
+const { NftMetadataAnalyzer } = require("./build/analyzer/NftMetadataAnalyzer");
 
 const ether = require("ethers");
 const provider = require("@metamask/providers");

@@ -4,6 +4,7 @@ import { NftTokenUriResponse } from "../../models/Nft/NftTokenUriResponse";
 
 class TokenUriService implements ITokenUriService {
   public async getMetadataFromTokenUri(tokenUri: string): Promise<NftTokenUriResponse> {
+    // console.log(axios);
     const response = await axios.get(
       `${process.env.REACT_APP_NFT_METADATA_AUDITOR_SERVER}/nft/metadata?tokenUri=${tokenUri}`,
     );

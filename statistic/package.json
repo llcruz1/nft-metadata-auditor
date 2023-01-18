@@ -7,7 +7,9 @@
     "babelify"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-core": "tsup ../src/core/ -d build --env.REACT_APP_NFT_METADATA_AUDITOR_SERVER http://localhost:5000",
+    "build-bundle": "browserify script.js -o bundle.js",
+    "start": "http-server ."
   },
   "author": "",
   "license": "ISC",
