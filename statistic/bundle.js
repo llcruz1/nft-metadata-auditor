@@ -19497,6 +19497,7 @@ var DescentralizedStorageEnum = /* @__PURE__ */ function(DescentralizedStorageEn
     DescentralizedStorageEnum2["Arweave"] = "arweave.net";
     DescentralizedStorageEnum2["Storj"] = "storj.io";
     DescentralizedStorageEnum2["Pinata"] = "pinata.cloud";
+    DescentralizedStorageEnum2["MyPinata"] = "ikzttp.mypinata.cloud";
     DescentralizedStorageEnum2["Filecoin"] = "filecoin.io";
     DescentralizedStorageEnum2["Skynet"] = "siasky.net";
     DescentralizedStorageEnum2["Zerochain"] = "0chain.net";
@@ -52439,7 +52440,7 @@ var NftMetadataService = /*#__PURE__*/ function() {
                     return __generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
-                                provider = new import_ethers.ethers.providers.Web3Provider(window.ethereum);
+                                provider = new import_ethers.ethers.providers.Web3Provider(window === null || window === void 0 ? void 0 : window.ethereum);
                                 return [
                                     4,
                                     provider.send("eth_requestAccounts", [])
@@ -91725,8 +91726,6 @@ function wrappy (fn, cb) {
 }
 
 },{}],323:[function(require,module,exports){
-module.exports={"urls": ["https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/1724\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/1482\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/8405\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/9529\n", "https://opensea.io/assets/ethereum/0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258/82771\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/8756\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/2135\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/6161\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/8380\n", "https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/13263\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/6598\n", "https://opensea.io/assets/ethereum/0x60e4d786628fea6478f785a6d7e704777c86a7c6/6504\n", "https://opensea.io/assets/ethereum/0x60e4d786628fea6478f785a6d7e704777c86a7c6/11495\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/440\n", "https://opensea.io/assets/ethereum/0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d/115792089237316195423570985008687907844762925492617102452873218822118924353424", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/3424\n", "https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/13480\n", "https://opensea.io/assets/ethereum/0x60e4d786628fea6478f785a6d7e704777c86a7c6/4506\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/1883\n", "https://opensea.io/assets/ethereum/0x8a90cab2b38dba80c64b7734e58ee1db38b8992e/1640\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/677\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/7293\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/2207\n", "https://opensea.io/assets/ethereum/0x60e4d786628fea6478f785a6d7e704777c86a7c6/5879\n", "https://opensea.io/assets/ethereum/0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258/48696\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/1679\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/2702\n", "https://opensea.io/assets/ethereum/0x60e4d786628fea6478f785a6d7e704777c86a7c6/2933\n", "https://opensea.io/assets/ethereum/0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258/55436\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/5661\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/9754\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/4115\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/8750\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/9852\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/2824\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/2454\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/9751\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/3682\n", "https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/18569\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/8640\n", "https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/4214\n", "https://opensea.io/assets/ethereum/0x60e4d786628fea6478f785a6d7e704777c86a7c6/17942\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/8631\n", "https://opensea.io/assets/ethereum/0x8a90cab2b38dba80c64b7734e58ee1db38b8992e/3630\n", "https://opensea.io/assets/ethereum/0x8a90cab2b38dba80c64b7734e58ee1db38b8992e/31\n", "https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/7595\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/8237\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/907\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/15\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/8292\n", "https://opensea.io/assets/ethereum/0x8a90cab2b38dba80c64b7734e58ee1db38b8992e/2693\n", "https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/5030\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/5066\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/2791\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/4389\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/8242\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/2442\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/6554\n", "https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/12332\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/6346\n", "https://opensea.io/assets/ethereum/0x8a90cab2b38dba80c64b7734e58ee1db38b8992e/7046\n", "https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/2382\n", "https://opensea.io/assets/ethereum/0x8a90cab2b38dba80c64b7734e58ee1db38b8992e/3700\n", "https://opensea.io/assets/ethereum/0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d/115792089237316195423570985008687907833193325017305194695118482169438805164014\n", "https://opensea.io/assets/ethereum/0x5cc5b05a8a13e3fbdb0bb9fccd98d38e50f90c38/75982\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/7016\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/8325\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/4219\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/7113\n", "https://opensea.io/assets/ethereum/0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258/68489\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/5802\n", "https://opensea.io/assets/ethereum/0x60e4d786628fea6478f785a6d7e704777c86a7c6/1773\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/2376\n", "https://opensea.io/assets/ethereum/0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d/39132472195907923298288079854653344317336\n", "https://opensea.io/assets/ethereum/0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258/5529\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/6536\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/4090\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/8214\n", "https://opensea.io/assets/ethereum/0x60e4d786628fea6478f785a6d7e704777c86a7c6/13175\n", "https://opensea.io/assets/ethereum/0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b/7122\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/150\n", "https://opensea.io/assets/ethereum/0x8a90cab2b38dba80c64b7734e58ee1db38b8992e/2244\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/2395\n", "https://opensea.io/assets/ethereum/0x60e4d786628fea6478f785a6d7e704777c86a7c6/13573\n", "https://opensea.io/assets/ethereum/0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258/69071\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/9688\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/8604\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/7283\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/9827\n", "https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/5751\n", "https://opensea.io/assets/ethereum/0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d/115792089237316195423570985008687907831832195549621440841264983739711732318078\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/1339\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/7193\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/1504\n", "https://opensea.io/assets/ethereum/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/2322\n", "https://opensea.io/assets/ethereum/0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d/115792089237316195423570985008687907844762925492617102452873218822118924353423\n", "https://opensea.io/assets/ethereum/0x23581767a106ae21c074b2276d25e5c3e136a68b/1020\n", "https://opensea.io/assets/ethereum/0x8a90cab2b38dba80c64b7734e58ee1db38b8992e/8276\n", "https://opensea.io/assets/ethereum/0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258/38577\n", "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/6844\n"]}
-},{}],324:[function(require,module,exports){
 const { MarketplaceFactory } = require("./build/factory/MarketplaceFactory");
 const { HttpServiceWrapper } = require("./build/services/Http/HttpServiceWrapper");
 const { Web3ServiceWrapper } = require("./build/services/Web3/Web3ServiceWrapper");
@@ -91735,9 +91734,7 @@ const { NftMetadataAnalyzer } = require("./build/analyzer/NftMetadataAnalyzer");
 const ether = require("ethers");
 const provider = require("@metamask/providers");
 
-const sample = require("./sample.json");
-
-const sampleUrls = sample.urls.map(x => new URL(x));
+// const sample = require("./sample.json");
 
 async function getMetadata(m, nftUrl) {
     const metadata = await m.getMetadata(nftUrl);
@@ -91745,12 +91742,24 @@ async function getMetadata(m, nftUrl) {
 }
 
 function getCsvLine(url, metadata, analyze) {
-    return `${url?.href};${metadata?.address};${metadata?.tokenId};${metadata?.jsonMetadataUrl};${analyze?.isDecentralized}`;
+    var jsonMetadataUrl = metadata?.jsonMetadataUrl;
+    if(metadata !== undefined && metadata.jsonMetadataUrl.startsWith("data:application/json"))
+    {
+        jsonMetadataUrl = "data:application/json"
+    }
+
+    return `${url?.href};${metadata?.address};${metadata?.tokenId};${jsonMetadataUrl};${analyze?.isDecentralized}`;
 }
 
 
-async function getReport() {
+async function getReport(datasetJson) {
+    
+    const sampleUrls = datasetJson.urls.map(x => new URL(x));
+
     var reportLines = [];
+    
+    reportLines.push("Marketplace;Address;TokenID;MetadataURL;Decentralized");
+
     var rawReport = '';
 
     for (let x of sampleUrls) {
@@ -91782,10 +91791,10 @@ async function getReport() {
     return rawReport;
 }
 
-async function downloadReport(name = 'report') {
-    name = `${report}.csv`;
+async function downloadReport(datasetJson, name = 'report') {
+    name = `${name}.csv`;
 
-    var report = await getReport();
+    var report = await getReport(datasetJson);
 
     var url = URL.createObjectURL(new Blob([report]));
   
@@ -91803,4 +91812,4 @@ async function downloadReport(name = 'report') {
 
 window.downloadReport = downloadReport;
 
-},{"./build2/analyzer/NftMetadataAnalyzer":97,"./build2/factory/MarketplaceFactory":98,"./build2/services/Http/HttpServiceWrapper":99,"./build2/services/Web3/Web3ServiceWrapper":100,"./sample.json":323,"@metamask/providers":233,"ethers":272}]},{},[324]);
+},{"./build/analyzer/NftMetadataAnalyzer":97,"./build/factory/MarketplaceFactory":98,"./build/services/Http/HttpServiceWrapper":99,"./build/services/Web3/Web3ServiceWrapper":100,"@metamask/providers":233,"ethers":272}]},{},[323]);

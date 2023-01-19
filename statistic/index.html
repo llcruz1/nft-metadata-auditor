@@ -2,13 +2,65 @@
 <html>
 
   <head>
+    <style>
+      body{
+        background: #1b1d29;
+      }
+      h1 {
+        color: aliceblue;
+        margin-top: 250px;
+      }
+      button {
+        background: #6670ab;
+        color: aliceblue;
+        margin:auto;
+        padding:15px;
+        border-radius: 25px;
+        margin-top: 25px;
+      }
+      input{
+        display: none;
+
+      }
+      label {
+        color: aliceblue;
+        background: #6670ab;
+        margin:auto;
+        padding:15px;
+        margin-top:25px;
+      }
+    </style>
+
+    <script>
+      function uploadFile() {
+        var input = document.querySelector("#dataset");
+        input.click();
+      }
+    </script>
   </head>
 
   <body>
-    <h1>Teste de aceitação</h1>
-    <button id="report" onclick="downloadReport('report')">report </button>
+    <div style="text-align: center;">
+      <h1>Teste de aceitação</h1>
+      <input type="file" id="dataset">
+      <button id="report" onclick="uploadFile()">Selecionar dataset</button>
+    </div>
   </body>
 
   <script src="./bundle.js"></script>
+  <script>
+    setInterval(async () => {
+      var input = document.querySelector("#dataset");
+
+      if(input.files !== undefined && input.files[0] !== undefined)
+      {
+        var file = input.files[0];
+        var content = await file.text();
+        var json = JSON.parse(content);
+        input.value='';
+        downloadReport(json, 'report')
+      }
+    }, 100);
+  </script>
 
 </html>

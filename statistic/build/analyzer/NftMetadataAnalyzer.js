@@ -78,6 +78,7 @@ var DescentralizedStorageEnum = /* @__PURE__ */ function(DescentralizedStorageEn
     DescentralizedStorageEnum2["Arweave"] = "arweave.net";
     DescentralizedStorageEnum2["Storj"] = "storj.io";
     DescentralizedStorageEnum2["Pinata"] = "pinata.cloud";
+    DescentralizedStorageEnum2["MyPinata"] = "ikzttp.mypinata.cloud";
     DescentralizedStorageEnum2["Filecoin"] = "filecoin.io";
     DescentralizedStorageEnum2["Skynet"] = "siasky.net";
     DescentralizedStorageEnum2["Zerochain"] = "0chain.net";

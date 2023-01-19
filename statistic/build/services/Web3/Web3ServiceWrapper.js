@@ -16691,7 +16691,7 @@ var NftMetadataService = /*#__PURE__*/ function() {
                     return __generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
-                                provider = new import_ethers.ethers.providers.Web3Provider(window.ethereum);
+                                provider = new import_ethers.ethers.providers.Web3Provider(window === null || window === void 0 ? void 0 : window.ethereum);
                                 return [
                                     4,
                                     provider.send("eth_requestAccounts", [])

@@ -32,8 +32,6 @@ it("Rarible should get metadata using Rarible marketplace's URL.", async () => {
     .fn()
     .mockReturnValue(mockedNftMetadataContract);
 
-  // console.log(Web3ServiceWrapper);
-  // console.log(HttpServiceWrapper);
   const marketplace = new Rarible(Web3ServiceWrapper, HttpServiceWrapper);
 
   const result = await marketplace.getMetadata(url);
@@ -43,24 +41,5 @@ it("Rarible should get metadata using Rarible marketplace's URL.", async () => {
   expect(result as NftMetadataContract).not.toBeNull();
   expect(Web3ServiceWrapper.nftMetadataService.getNftMetadata).toHaveBeenCalledTimes(1);
 });
-
-// it("MarketplaceFactory should throw Error when using an not implemented marketplace URL.", async () => {
-
-//     expect(async () => {
-//         const url = new URL("https://rarible.com/token/0x60e4d786628fea6478f785a6d7e704777c86a7c6:13888");
-
-//         Web3ServiceWrapper.nftMetadataService.getNftMetadata = jest
-//         .fn()
-//         .mockRejectedValue(new Error("Error"));
-
-//         const marketplace = new Rarible(
-//             Web3ServiceWrapper,
-//             HttpServiceWrapper,
-//         )
-//         const result = await marketplace.getMetadata(url);
-//         console.log(result);
-//     }).toThrow(Error);
-
-// });
 
 export {};
