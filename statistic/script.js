@@ -6,9 +6,7 @@ const { NftMetadataAnalyzer } = require("./build/analyzer/NftMetadataAnalyzer");
 const ether = require("ethers");
 const provider = require("@metamask/providers");
 
-const sample = require("./sample.json");
-
-const sampleUrls = sample.urls.map(x => new URL(x));
+// const sample = require("./sample.json");
 
 async function getMetadata(m, nftUrl) {
     const metadata = await m.getMetadata(nftUrl);
@@ -16,12 +14,24 @@ async function getMetadata(m, nftUrl) {
 }
 
 function getCsvLine(url, metadata, analyze) {
-    return `${url?.href};${metadata?.address};${metadata?.tokenId};${metadata?.jsonMetadataUrl};${analyze?.isDecentralized}`;
+    var jsonMetadataUrl = metadata?.jsonMetadataUrl;
+    if(metadata !== undefined && metadata.jsonMetadataUrl.startsWith("data:application/json"))
+    {
+        jsonMetadataUrl = "data:application/json"
+    }
+
+    return `${url?.href};${metadata?.address};${metadata?.tokenId};${jsonMetadataUrl};${analyze?.isDecentralized}`;
 }
 
 
-async function getReport() {
+async function getReport(datasetJson) {
+    
+    const sampleUrls = datasetJson.urls.map(x => new URL(x));
+
     var reportLines = [];
+    
+    reportLines.push("Marketplace;Address;TokenID;MetadataURL;Decentralized");
+
     var rawReport = '';
 
     for (let x of sampleUrls) {
@@ -53,10 +63,10 @@ async function getReport() {
     return rawReport;
 }
 
-async function downloadReport(name = 'report') {
-    name = `${report}.csv`;
+async function downloadReport(datasetJson, name = 'report') {
+    name = `${name}.csv`;
 
-    var report = await getReport();
+    var report = await getReport(datasetJson);
 
     var url = URL.createObjectURL(new Blob([report]));
   

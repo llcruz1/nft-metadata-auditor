@@ -3,6 +3,7 @@ export enum DescentralizedStorageEnum {
   Arweave = "arweave.net",
   Storj = "storj.io",
   Pinata = "pinata.cloud",
+  MyPinata = "ikzttp.mypinata.cloud",
   Filecoin = "filecoin.io",
   Skynet = "siasky.net",
   Zerochain = "0chain.net",
