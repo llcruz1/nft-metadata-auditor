@@ -1,7 +1,16 @@
 {
   "name": "nft-metadata-auditor",
   "version": "0.1.0",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llcruz1/nft-metadata-auditor.git"
+  },
+  "author": "llcruz1",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/llcruz1/nft-metadata-auditor/issues"
+  },
+  "homepage": "https://github.com/llcruz1/nft-metadata-auditor#readme",
   "dependencies": {
     "@metamask/providers": "^10.2.1",
     "@testing-library/jest-dom": "^5.16.5",
