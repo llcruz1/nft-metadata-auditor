@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2023 Lucas Lima da Cruz
+Copyright (c) 2023 Lucas Lima da Cruz, Leonardo Matheus Paula de Souza
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
