@@ -10,7 +10,6 @@
   "bugs": {
     "url": "https://github.com/llcruz1/nft-metadata-auditor/issues"
   },
-  "homepage": "https://github.com/llcruz1/nft-metadata-auditor#readme",
   "dependencies": {
     "@metamask/providers": "^10.2.1",
     "@testing-library/jest-dom": "^5.16.5",
