@@ -1,3 +1,7 @@
+### NFT Metadata Auditor - UML Package Diagram
+![./package_diagram.png]
+![Package Diagram](package_diagram.png)
+
 ### Run application in dev mode
 
 #### Install dependencies
