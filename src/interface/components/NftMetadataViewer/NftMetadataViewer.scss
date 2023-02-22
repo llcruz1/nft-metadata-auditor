@@ -5,9 +5,23 @@
   text-align: center;
   word-wrap: break-word;
 
+  .badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
   &.align-responsive {
     display: flex;
     text-align: left;
+
+    .badge {
+      display: flex;
+      justify-content: start;
+      align-items: left;
+      text-align: left;
+    }
   }
 
   .nft-img-container {
@@ -29,6 +43,13 @@
 
     &.align-responsive {
       text-align: center;
+
+      .badge {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
     }
 
     .nft-img-container {

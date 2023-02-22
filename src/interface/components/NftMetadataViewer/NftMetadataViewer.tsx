@@ -1,6 +1,7 @@
 import React from "react";
 import { AnalyzedNftContract } from "../../../core/models/Analyzer/AnalyzedNftContract";
 import { NftMetadataContract } from "../../../core/models/Nft/NftMetadataContract";
+import StatusBadge from "../StatusBadge/StatusBadge";
 import "./NftMetadataViewer.scss";
 
 interface NftMetadataViewerProps {
@@ -19,6 +20,27 @@ export function NftMetadataViewer({ nftMetadata, analyzedData }: NftMetadataView
         </div>
       )}
       <div>
+        {analyzedData?.isDecentralized ? (
+          <p>
+            <div className="badge">
+              <StatusBadge status="success">Decentralized Server</StatusBadge>
+            </div>
+            <br />
+            <span>This NFT is hosted by a decentralized server</span>
+          </p>
+        ) : (
+          <p>
+            <div className="badge">
+              <StatusBadge status="error">Centralized Server</StatusBadge>
+            </div>
+            <br />
+            <span>
+              Ownership of this NFT cannot be guaranteed after purchase due to its contents being
+              hosted by a centralized server
+            </span>
+          </p>
+        )}
+        <br />
         <div>
           <h3 className="nft-name">{nftMetadata?.name}</h3>
           <p>{nftMetadata?.description}</p>
@@ -33,9 +55,6 @@ export function NftMetadataViewer({ nftMetadata, analyzedData }: NftMetadataView
             {nftMetadata?.imageUrl}
           </p>
         )}
-        <p>
-          <b>{analyzedData?.isDecentralized ? "Decentralized Server" : "Centralized Server"}</b>
-        </p>
         {nftMetadata.hostingInformation?.organization && !analyzedData?.isDecentralized && (
           <div>
             <p>
