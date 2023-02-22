@@ -1,5 +1,7 @@
 ### NFT Metadata Auditor - UML Package Diagram
-![./package_diagram.png]
+
+Diagrama de pacotes representando a modelagem da ferramenta:
+
 ![Package Diagram](package_diagram.png)
 
 ### Run application in dev mode
